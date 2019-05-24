@@ -8,21 +8,35 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 
-import androidx.work.OneTimeWorkRequest;
-import androidx.work.WorkManager;
-
 import com.inzy.practice.R;
 import com.inzy.practice.viewmodel.LiveDataViewModel;
-import com.inzy.practice.worker.MyWorker;
 
 import java.util.List;
 
-public class LiveDataActivity extends AppCompatActivity {
+public class LiveDataBasicActivity extends AppCompatActivity {
+
+    private String TAG = LiveDataBasicActivity.class.getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_live_data);
+
+
+        /////////////////////////
+        //  Below code is for initialising work manager from another activity and getting data on another activity
+        ////////////////////////
+
+        /*UUID UUID = (java.util.UUID) getIntent().getExtras().getSerializable("UUID");
+
+        WorkManager.getInstance().getWorkInfoByIdLiveData(UUID).observe(this, new Observer<WorkInfo>() {
+            @Override
+            public void onChanged(@Nullable WorkInfo workInfo) {
+                if (workInfo != null && workInfo.getState().isFinished())
+                    Log.d(TAG, workInfo.getOutputData().getString(MyWorker.TASK_DESC) + "\n");
+                Log.d(TAG, workInfo.getState().name() + "\n");
+            }
+        });*/
 
         ListView listView = findViewById(R.id.list);
         ProgressBar progressBar = findViewById(R.id.progressbar);

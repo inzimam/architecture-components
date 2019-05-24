@@ -15,7 +15,7 @@ public class LiveDataRoomActivity extends AppCompatActivity {
             ProductListFragment fragment = new ProductListFragment();
 
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.fragment_container, fragment, UserDataFragment.TAG).commit();
+                    .add(R.id.fragment_container, fragment, ProductListFragment.TAG).commit();
         }
     }
 }

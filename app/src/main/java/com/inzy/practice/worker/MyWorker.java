@@ -29,7 +29,15 @@ public class MyWorker extends Worker {
         id++;
         displayNotification("My Worker", taskDesc);
         Data data = new Data.Builder().putString(TASK_DESC, taskDesc + " Notification is displayed").build();
+        addDelay();
         return Result.success(data);
+    }
+
+    private static void addDelay() {
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException ignored) {
+        }
     }
 
     private void displayNotification(String title, String task) {

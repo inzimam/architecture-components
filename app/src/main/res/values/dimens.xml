@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="card_margin">10dp</dimen>
+    <dimen name="like_marginEnd">10dp</dimen>
+    <dimen name="activity_margin_half">8dp</dimen>
+
+    <dimen name="margin_submenu_end">10dp</dimen>
+    <dimen name="item_horizontal_margin">10dp</dimen>
+    <dimen name="product_item_min_height">100dp</dimen>
+    <dimen name="card_radius">5dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+</resources>

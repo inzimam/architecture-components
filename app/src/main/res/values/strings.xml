@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Practice</string>
+    <string name="dash">--</string>
+    <string name="cd_search_products">search</string>
+    <string name="loading_products">loading</string>
+    <string name="cd_product_name">Name of the product</string>
+    <string name="cd_products_list">product list</string>
+    <string name="search_products_hint">search</string>
+    <string name="product_price">Price: $%d</string>
+    <string name="title_activity_live_data">LiveDataActivity</string>
+    <string name="title_activity_worker_actiity">WorkerActiity</string>
+</resources>

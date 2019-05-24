@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/buttonEnqueue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="20dp"
+        android:text="Enqueue Work"
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/buttonCancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/buttonEnqueue"
+        android:layout_centerInParent="true"
+        android:text="Cancel Work"
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/buttonPeriodic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/buttonCancel"
+        android:layout_centerInParent="true"
+        android:text="Periodic Work"
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/buttonChain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/buttonPeriodic"
+        android:layout_centerInParent="true"
+        android:text="Chain Work"
+        android:textAllCaps="false" />
+
+    <TextView
+        android:id="@+id/textViewStatus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorPrimary"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:textColor="#ffffff" />
+
+</RelativeLayout>

@@ -27,6 +27,9 @@ public class LiveDataActivity extends AppCompatActivity {
         ListView listView = findViewById(R.id.list);
         ProgressBar progressBar = findViewById(R.id.progressbar);
         progressBar.setVisibility(View.VISIBLE);
+
+
+
         LiveDataViewModel model = ViewModelProviders.of(this).get(LiveDataViewModel.class);
         model.getFruitList().observe(this, (List<String> fruitlist) -> {
             // update UI

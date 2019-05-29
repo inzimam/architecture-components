@@ -18,6 +18,10 @@ package com.inzy.practice;
 
 import android.app.Application;
 
+import com.inzy.practice.dagger2.ApiComponent;
+import com.inzy.practice.dagger2.ApiModule;
+import com.inzy.practice.dagger2.AppModule;
+import com.inzy.practice.dagger2.DaggerApiComponent;
 import com.inzy.practice.db.AppDatabase;
 
 /**
@@ -26,12 +30,14 @@ import com.inzy.practice.db.AppDatabase;
 public class BasicApp extends Application {
 
     private AppExecutors mAppExecutors;
+    private ApiComponent mApiComponent;
 
     @Override
     public void onCreate() {
         super.onCreate();
 
         mAppExecutors = new AppExecutors();
+        mApiComponent = DaggerApiComponent.builder().appModule(new AppModule(this)).apiModule(new ApiModule("https://androidwave.com/api/")).build();
     }
 
     public AppDatabase getDatabase() {
@@ -40,5 +46,9 @@ public class BasicApp extends Application {
 
     public DataRepository getRepository() {
         return DataRepository.getInstance(getDatabase());
+    }
+
+    public ApiComponent getNetComponent() {
+        return mApiComponent;
     }
 }

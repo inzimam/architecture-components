@@ -3,12 +3,12 @@ package com.inzy.practice;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.inzy.practice.ui.BasicViewModelActivity;
-import com.inzy.practice.ui.LiveDataActivity;
+import com.inzy.practice.ui.LiveDataBasicActivity;
+import com.inzy.practice.ui.LiveDataRetrofitActivity;
 import com.inzy.practice.ui.LiveDataRoomActivity;
 import com.inzy.practice.worker.WorkerActivity;
 
@@ -31,13 +31,16 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this, BasicViewModelActivity.class);
                 startActivity(intent);
             } else if (position == 1) {
-                Intent intent = new Intent(MainActivity.this, LiveDataActivity.class);
+                Intent intent = new Intent(MainActivity.this, LiveDataBasicActivity.class);
                 startActivity(intent);
             } else if (position == 2) {
                 Intent intent = new Intent(MainActivity.this, LiveDataRoomActivity.class);
                 startActivity(intent);
             } else if (position == 3) {
                 Intent intent = new Intent(MainActivity.this, WorkerActivity.class);
+                startActivity(intent);
+            } else if (position == 3) {
+                Intent intent = new Intent(MainActivity.this, LiveDataRetrofitActivity.class);
                 startActivity(intent);
             }
         });
@@ -49,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
         list.add("Basic LiveData");
         list.add("Live Data + Room + MVVM");
         list.add("Basic Work Manager");
+        list.add("Live Data + Retrofit");
         return list;
     }
 }

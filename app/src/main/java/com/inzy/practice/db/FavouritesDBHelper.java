@@ -12,7 +12,7 @@ public class FavouritesDBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String createtable =
+        //String createtable =
     }
 
     @Override

@@ -1,56 +1,113 @@
 package com.inzy.practice.ui;
 
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.inzy.practice.R;
+import com.inzy.practice.basicviewmodel.Favourites;
+import com.inzy.practice.basicviewmodel.FavouritesViewModel;
 import com.inzy.practice.viewmodel.ScoreViewModel;
+
+import java.util.Date;
+import java.util.List;
 
 public class BasicViewModelActivity extends AppCompatActivity {
 
-    private TextView team_a_score, team_b_score;
-    ScoreViewModel mViewModel;
+    private FavouritesAdapter mFavAdapter;
+    private FavouritesViewModel mFavViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_basic_view_model);
 
-        mViewModel = ViewModelProviders.of(this).get(ScoreViewModel.class);
+        ListView listView = findViewById(R.id.listView);
+        FloatingActionButton fab = findViewById(R.id.fab);
 
-        team_a_score = findViewById(R.id.team_a_score);
-        team_b_score = findViewById(R.id.team_b_score);
+        mFavViewModel = ViewModelProviders.of(this).get(FavouritesViewModel.class);
 
-        displayForTeamA(mViewModel.scoreTeamA);
-        displayForTeamB(mViewModel.scoreTeamB);
+        List<Favourites> favourites = mFavViewModel.getFavs();
+        mFavAdapter = new FavouritesAdapter(this, R.layout.list_item_row, favourites);
+        listView.setAdapter(mFavAdapter);
+
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final EditText inUrl = new EditText(BasicViewModelActivity.this);
+                AlertDialog dialog = new AlertDialog.Builder(BasicViewModelActivity.this)
+                        .setTitle("New favourite")
+                        .setMessage("Add a url link below")
+                        .setView(inUrl)
+                        .setPositiveButton("Add", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                String url = String.valueOf(inUrl.getText());
+                                long date = (new Date()).getTime();
+                                // VM AND VIEW
+                                mFavAdapter.add(mFavViewModel.addFav(url, date));
+                            }
+                        })
+                        .setNegativeButton("Cancel", null)
+                        .create();
+                dialog.show();
+            }
+        });
     }
 
-    // An example of both reading and writing to the ViewModel
-    public void addOneForTeamA(View v) {
-        mViewModel.scoreTeamA = mViewModel.scoreTeamA + 1;
-        displayForTeamA(mViewModel.scoreTeamA);
+    public void deleteFav(View view) {
+        View parent = (View) view.getParent();
+        int position = (int) parent.getTag(R.id.POS);
+        Favourites favourites = mFavAdapter.getItem(position);
+        mFavViewModel.removeFav(favourites.mId);
+        mFavAdapter.remove(favourites);
     }
 
-    public void addOneForTeamB(View v) {
-        mViewModel.scoreTeamB = mViewModel.scoreTeamB + 1;
-        displayForTeamB(mViewModel.scoreTeamB);
-    }
+    public class FavouritesAdapter extends ArrayAdapter<Favourites> {
 
-    public void displayForTeamA(int score) {
-        team_a_score.setText(score + "");
-    }
+        private class ViewHolder {
+            TextView tvUrl;
+            TextView tvDate;
+        }
 
-    public void displayForTeamB(int score) {
-        team_b_score.setText(score + "");
-    }
+        public FavouritesAdapter(Context context, int layoutResourceId, List<Favourites> todos) {
+            super(context, layoutResourceId, todos);
+        }
 
-    public void resetScore(View view) {
-        mViewModel.scoreTeamA = 0;
-        mViewModel.scoreTeamB = 0;
-        displayForTeamA(mViewModel.scoreTeamA);
-        displayForTeamB(mViewModel.scoreTeamB);
+        @Override
+        @NonNull
+        public View getView(int position, View convertView, ViewGroup parent) {
+            Favourites favourites = getItem(position);
+            ViewHolder viewHolder;
+            if (convertView == null) {
+                viewHolder = new ViewHolder();
+                LayoutInflater vi = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                convertView = vi.inflate(R.layout.list_item_row, parent, false);
+                viewHolder.tvUrl = convertView.findViewById(R.id.tvUrl);
+                viewHolder.tvDate = convertView.findViewById(R.id.tvDate);
+                convertView.setTag(R.id.VH, viewHolder);
+            } else {
+                viewHolder = (ViewHolder) convertView.getTag(R.id.VH);
+
+            }
+
+            viewHolder.tvUrl.setText(favourites.mUrl);
+            viewHolder.tvDate.setText((new Date(favourites.mDate).toString()));
+            convertView.setTag(R.id.POS, position);
+            return convertView;
+        }
+
     }
 }

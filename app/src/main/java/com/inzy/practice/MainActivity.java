@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
 
     private List<String> loadItems() {
         List<String> list = new ArrayList<>();
-        list.add("Basic ViewModel");
+        list.add("Basic ViewModel with SQLite");
         list.add("Basic LiveData");
         list.add("Live Data + Room + MVVM");
         list.add("Basic Work Manager");

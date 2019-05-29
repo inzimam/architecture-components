@@ -1,4 +1,4 @@
-package com.inzy.practice.db;
+package com.inzy.practice.basicviewmodel;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
@@ -12,11 +12,16 @@ public class FavouritesDBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        //String createtable =
+        String createtable = "CREATE TABLE " + DbSettings.DBEntry.TABLE_NAME + " ( " +
+                DbSettings.DBEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                DbSettings.DBEntry.COL_FAV_URL + " TEXT NOT NULL, " +
+                DbSettings.DBEntry.COL_FAV_DATE + " INTEGER NOT NULL);";
+        db.execSQL(createtable);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
+        db.execSQL("DROP TABLE IF EXISTS " + DbSettings.DBEntry.TABLE_NAME);
+        onCreate(db);
     }
 }

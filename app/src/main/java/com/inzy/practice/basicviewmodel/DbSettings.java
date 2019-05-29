@@ -1,4 +1,4 @@
-package com.inzy.practice.db;
+package com.inzy.practice.basicviewmodel;
 
 import android.provider.BaseColumns;
 

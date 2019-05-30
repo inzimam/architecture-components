@@ -7,6 +7,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.inzy.practice.basicviewmodel.BasicViewModelActivity;
+import com.inzy.practice.dagger2.DaggerActivity;
 import com.inzy.practice.ui.LiveDataBasicActivity;
 import com.inzy.practice.ui.LiveDataRetrofitActivity;
 import com.inzy.practice.ui.LiveDataRoomActivity;
@@ -39,8 +40,11 @@ public class MainActivity extends AppCompatActivity {
             } else if (position == 3) {
                 Intent intent = new Intent(MainActivity.this, WorkerActivity.class);
                 startActivity(intent);
-            } else if (position == 3) {
+            } else if (position == 4) {
                 Intent intent = new Intent(MainActivity.this, LiveDataRetrofitActivity.class);
+                startActivity(intent);
+            } else if (position == 5) {
+                Intent intent = new Intent(MainActivity.this, DaggerActivity.class);
                 startActivity(intent);
             }
         });
@@ -53,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
         list.add("Live Data + Room + MVVM");
         list.add("Basic Work Manager");
         list.add("Live Data + Retrofit");
+        list.add("Basic Dagger 2");
         return list;
     }
 }

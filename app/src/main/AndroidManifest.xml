@@ -14,7 +14,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".basicviewmodel.BasicViewModelActivity"/>
+
+        <activity android:name=".basicviewmodel.BasicViewModelActivity" />
+        <activity android:name=".dagger2.DaggerActivity" />
         <activity
             android:name=".worker.WorkerActivity"
             android:label="@string/title_activity_worker_actiity"

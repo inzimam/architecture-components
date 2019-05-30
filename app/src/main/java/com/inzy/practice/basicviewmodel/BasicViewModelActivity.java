@@ -1,4 +1,4 @@
-package com.inzy.practice.ui;
+package com.inzy.practice.basicviewmodel;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
@@ -17,9 +17,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.inzy.practice.R;
-import com.inzy.practice.basicviewmodel.Favourites;
-import com.inzy.practice.basicviewmodel.FavouritesViewModel;
-import com.inzy.practice.viewmodel.ScoreViewModel;
 
 import java.util.Date;
 import java.util.List;

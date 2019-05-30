@@ -6,7 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import com.inzy.practice.ui.BasicViewModelActivity;
+import com.inzy.practice.basicviewmodel.BasicViewModelActivity;
 import com.inzy.practice.ui.LiveDataBasicActivity;
 import com.inzy.practice.ui.LiveDataRetrofitActivity;
 import com.inzy.practice.ui.LiveDataRoomActivity;
